@@ -28,7 +28,7 @@ void			IEntity::setSprite(sf::IntRect area)
 
 sf::Sprite*		IEntity::getSprite() const
 {
-
+	return (_sprite);
 }
 
 

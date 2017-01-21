@@ -1,6 +1,8 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 #include "Display.h"
+#include "Player.h"
+#include <vector>
 #include <SFML/Graphics.hpp>
 
 class globalData
@@ -11,6 +13,8 @@ private:
 	sf::Texture *_texture;
 	sf::RenderWindow *_window;
 	sf::Sprite *_backGround;
+	std::vector<Player*>	*_players;
+
 public:
 	globalData();
 	bool getExit();
@@ -23,6 +27,8 @@ public:
 	void setWindow(sf::RenderWindow*);
 	sf::Sprite *getBackGround();
 	void setBackGround(sf::Sprite*);
+	std::vector<Player*>	*getPlayers();
+	Player					*getPlayer(int);
 };
 
 extern globalData *data;

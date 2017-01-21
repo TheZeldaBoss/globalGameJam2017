@@ -1,4 +1,4 @@
-
+#include <thread>
 #include <SFML/Graphics.hpp>
 #include "IEntity.h"
 
@@ -13,6 +13,10 @@ public:
 
 	void	start();
 
+	// Thread handling
+
+	void		handling();
+
 	void	setId(int);
 	int		getId() const;
 	void	setDir(enum MOVE);
@@ -20,6 +24,7 @@ public:
 	// Movements
 
 	void	setBind();
+	void	mvAnim();
 
 private:
 	int					_id;

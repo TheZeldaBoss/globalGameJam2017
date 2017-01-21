@@ -7,5 +7,6 @@
 void drawInWindow()
 {
 	data->getWindow()->draw(*data->getBackGround());
+	data->getWindow()->draw(*data->getPlayer(0)->getSprite());
 	data->getWindow()->display();
 }

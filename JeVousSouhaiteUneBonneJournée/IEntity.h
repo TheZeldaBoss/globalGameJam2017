@@ -6,6 +6,7 @@
 class IEntity
 {
 public:
+	IEntity();
 	virtual ~IEntity() = 0;
 
 	enum MOVE
@@ -33,19 +34,18 @@ public:
 
 	// Display properties
 
-	void			setTexture(std::string);
+	void			setImage(std::string);
+	void			setSubTexture(sf::IntRect);
 	sf::Texture*	getTexture();
 	void			setSprite(sf::IntRect);
-	sf::Sprite*		getSprite() const;
+	sf::Sprite		*getSprite() const;
 
 	// Bonus
 
-
-
-
 private:
-	sf::Sprite			*_sprite;
+	sf::Image			_textureImg;
 	sf::Texture			*_texture;
+	sf::Sprite			*_sprite;
 	int					_x;
 	int					_y;
 	int					_speed;

@@ -16,10 +16,10 @@ globalData::globalData()
 	_wall = new sf::Sprite();
 	_floor = new sf::Sprite();
 	_players = new std::vector<Player*>;
-	_backGround->setTexture(*_texture, true);
 	_texture->loadFromFile("src/background.png");
 	_tileset->loadFromFile("src/tileset.png");
-	_wall->setTexture(*_tileset,true);
+	_backGround->setTexture(*_texture, true);
+	_wall->setTexture(*_tileset, true);
 	_floor->setTexture(*_tileset, true);
 	_wall->setTextureRect(sf::IntRect(16, 0, 16, 16));
 	_floor->setTextureRect(sf::IntRect(0, 0, 16, 16));
@@ -132,15 +132,10 @@ int main()
 	std::thread t3(&Player::start, &p3);
 	std::thread t4(&Player::start, &p4);
 
-	std::thread	t_display(drawInWindow);
+	std::thread	t_display(&drawInWindow);
 	data->setLabyrinth(&laby);
 	data->setRedraw(true);
-	std::thread o(&Player::start, &p1);
-	std::thread	t_display(&drawInWindow);
-
 	data->getWindow()->setActive(false);
-
-	t_display.join();
 	while (data->getExit() == false);
 	return 0;
 }

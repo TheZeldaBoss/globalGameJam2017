@@ -4,14 +4,14 @@
 #include "Player.h"
 #include "main.h"
 
-#define	ANIM_SPEED 3
+#define	ANIM_SPEED 6
 
 // Constructor
 
 Player::Player(int id)
 {
 	setId(id);
-	setSpeed(6);
+	setSpeed(1);
 	setBind();
 	setDir(MOVE::DOWN);
 	getSprite()->scale(2, 2);
@@ -105,14 +105,19 @@ void	Player::mvAnim()
 			setDir(MOVE::DOWN);
 		printf("%d\n", speed);
 		if (speed == ANIM_SPEED)
-			{
-				setSprite(sf::IntRect(i * 28, 0, 28, 35));
-				i = i + 1;
-				speed = 0;
-			}
-			if (i == 10)
-				i = 0;
-			speed++;
+		{
+			setSprite(sf::IntRect(i * 28, 0, 28, 35));
+			i = i + 1;
+			speed = 0;
+		}
+		if (i == 10)
+			i = 0;
+		speed++;
+	}
+	else
+	{
+		i = 0;
+		data->setRedraw(true);
 	}
 	if (MAIN_MV == UP && !(sf::Keyboard::isKeyPressed(UP)))
 		MAIN_MV = sf::Keyboard::Key::Unknown;
@@ -134,24 +139,24 @@ void	Player::start()
 		Sleep(1);
 	//	if (getId() == 1)
 //			printf("P%d : %d/%d\n", getId() + 1, getX(), getY());
-		if (getId() == 0 && MAIN_MV == UP)
-			printf("UP\n");
-		if (getId() == 0 && MAIN_MV == LEFT)
-			printf("LEFT\n");
-		if (getId() == 0 && MAIN_MV == RIGHT)
-			printf("RIGHT\n");
-		if (getId() == 0 && MAIN_MV == DOWN)
-			printf("DOWN\n");
-		if (getId() == 0 && MAIN_MV == sf::Keyboard::Key::Unknown)
-			printf("TAMER\n");
 
 		mvAnim();
 
+		std::vector<Player *> dataPlayers = *data->getPlayers();
+		bool doMove = true;
 		if (sf::Keyboard::isKeyPressed(UP))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = UP;
-			move(MOVE::UP);
+			for (int i = 0; i < data->getPlayers()->size(); i++)
+			{
+				if (dataPlayers[i]->getId() != this->getId() && abs(dataPlayers[i]->getY() - this->getY()) < 0.5)
+				{
+					doMove = false;
+				}
+				if (doMove == true)
+					move(MOVE::UP);
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(LEFT))
 		{

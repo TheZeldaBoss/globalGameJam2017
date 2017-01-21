@@ -1,4 +1,11 @@
 #include "IEntity.h"
+#include "main.h"
+
+IEntity::IEntity()
+{
+	_texture = new sf::Texture;
+	_sprite = new sf::Sprite;
+}
 
 IEntity::~IEntity()
 {
@@ -7,12 +14,14 @@ IEntity::~IEntity()
 
 //
 
-void			IEntity::setTexture(std::string file)
+void			IEntity::setImage(std::string file)
 {
-	sf::Image image;
+	_textureImg.loadFromFile(file);
+}
 
-	image.loadFromFile(file);
-	getTexture()->loadFromImage(image);
+void			IEntity::setSubTexture(sf::IntRect area)
+{
+	_texture->loadFromImage(_textureImg, area);
 }
 
 sf::Texture*	IEntity::getTexture()
@@ -22,7 +31,7 @@ sf::Texture*	IEntity::getTexture()
 
 void			IEntity::setSprite(sf::IntRect area)
 {
-	_sprite->setTexture(*getTexture());
+	_sprite->setTexture(*getTexture(), true);
 	_sprite->setTextureRect(area);
 }
 
@@ -32,9 +41,29 @@ sf::Sprite*		IEntity::getSprite() const
 }
 
 
-void			IEntity::move(enum MOVE)
+void			IEntity::move(enum MOVE mv)
 {
-
+	if (mv == UP)
+	{
+		setY(getY() + getSpeed());
+		getSprite()->setPosition(getX(), getY());
+	}
+	else if (mv == LEFT)
+	{
+		setX(getX() - getSpeed());
+		getSprite()->setPosition(getX(), getY());
+	}
+	else if (mv == RIGHT)
+	{
+		setX(getX() + getSpeed());
+		getSprite()->setPosition(getX(), getY());
+	}
+	else if (mv == DOWN)
+	{
+		setY(getY() - getSpeed());
+		getSprite()->setPosition(getX(), getY());
+	}
+	data->setRedraw(true);
 }
 
 void			IEntity::setX(int x)

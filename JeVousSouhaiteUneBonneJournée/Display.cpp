@@ -6,15 +6,18 @@
 
 void drawInWindow()
 {
-	data->getWindow()->draw(*data->getBackGround());
-	std::vector<std::vector<sf::Sprite>>labyData = data->getSpritesVector();
-
-	for (unsigned int i = 0; i < labyData.size(); i++)
+	if (data->getRedraw() == true)
 	{
-		for (unsigned int j = 0; j < labyData[i].size(); j++)
+		data->getWindow()->draw(*data->getBackGround());
+		std::vector<std::vector<sf::Sprite>>labyData = data->getSpritesVector();
+
+		for (unsigned int i = 0; i < labyData.size(); i++)
 		{
-			data->getWindow()->draw(labyData[i][j]);
+			for (unsigned int j = 0; j < labyData[i].size(); j++)
+			{
+				data->getWindow()->draw(labyData[i][j]);
+			}
 		}
+		data->getWindow()->display();
 	}
-	data->getWindow()->display();
 }

@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="generateLaby.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="IEntity.cpp" />

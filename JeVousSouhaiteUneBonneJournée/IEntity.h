@@ -35,6 +35,8 @@ public:
 
 	void			setTexture(std::string);
 	sf::Texture*	getTexture();
+	void			setSprite(sf::IntRect);
+	sf::Sprite*		getSprite() const;
 
 	// Bonus
 

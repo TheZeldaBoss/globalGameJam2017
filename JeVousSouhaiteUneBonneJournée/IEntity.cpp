@@ -20,6 +20,18 @@ sf::Texture*	IEntity::getTexture()
 	return (_texture);
 }
 
+void			IEntity::setSprite(sf::IntRect area)
+{
+	_sprite->setTexture(*getTexture());
+	_sprite->setTextureRect(area);
+}
+
+sf::Sprite*		IEntity::getSprite() const
+{
+
+}
+
+
 void			IEntity::move(enum MOVE)
 {
 

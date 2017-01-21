@@ -60,7 +60,14 @@ void	Player::setBind()
 		setXY(200, 200);
 		setTexture("src/player/player4.png");
 	}
-	//setSprite();
+}
+
+void	Player::setDir(enum MOVE mv)
+{
+	if (mv == UP)
+	{
+		setSprite(sf::IntRect(0, 0, 28, 35));
+	}
 }
 
 void	Player::setId(int id)

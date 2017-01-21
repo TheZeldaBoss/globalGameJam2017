@@ -15,6 +15,7 @@ public:
 
 	void	setId(int);
 	int		getId() const;
+	void	setDir(enum MOVE);
 
 	// Movements
 

@@ -27,12 +27,15 @@ public:
 	void	mvAnim();
 
 private:
+	int					i;
+	int					speed;
 	int					_id;
 
 	sf::Keyboard::Key	UP;
 	sf::Keyboard::Key	LEFT;
 	sf::Keyboard::Key	RIGHT;
 	sf::Keyboard::Key	DOWN;
+	sf::Keyboard::Key	MAIN_MV;
 };
 
 #endif

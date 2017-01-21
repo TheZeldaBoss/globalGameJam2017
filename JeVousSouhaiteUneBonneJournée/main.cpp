@@ -8,7 +8,7 @@ globalData *data;
 globalData::globalData()
 {
 	exitProgram = false;
-	redraw = false;
+	redraw = true;
 	_texture = new sf::Texture();
 	_backGround = new sf::Sprite();
 	_window = new sf::RenderWindow();
@@ -82,10 +82,16 @@ int main()
 {
 	data = new globalData();
 	Player	p1(0);
-	std::thread o(&Player::start, &p1);
-	std::thread	t_display(drawInWindow);
+	Player	p2(1);
+	Player	p3(2);
+	Player	p4(3);
 
-//	p1.start();
+	std::thread t1(&Player::start, &p1);
+	std::thread t2(&Player::start, &p2);
+	std::thread t3(&Player::start, &p3);
+	std::thread t4(&Player::start, &p4);
+
+	std::thread	t_display(drawInWindow);
 
 	data->getWindow()->setActive(false);
 	t_display.join();

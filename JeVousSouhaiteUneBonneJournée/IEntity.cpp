@@ -45,23 +45,23 @@ void			IEntity::move(enum MOVE mv)
 {
 	if (mv == UP)
 	{
-		setY(getY() + getSpeed());
-		getSprite()->setPosition(getX(), getY());
+		setY(getY() - getSpeed());
+		getSprite()->setPosition((float)getX(), (float)getY());
 	}
 	else if (mv == LEFT)
 	{
 		setX(getX() - getSpeed());
-		getSprite()->setPosition(getX(), getY());
+		getSprite()->setPosition((float)getX(), (float)getY());
 	}
 	else if (mv == RIGHT)
 	{
 		setX(getX() + getSpeed());
-		getSprite()->setPosition(getX(), getY());
+		getSprite()->setPosition((float)getX(), (float)getY());
 	}
 	else if (mv == DOWN)
 	{
-		setY(getY() - getSpeed());
-		getSprite()->setPosition(getX(), getY());
+		setY(getY() + getSpeed());
+		getSprite()->setPosition((float)getX(), (float)getY());
 	}
 	data->setRedraw(true);
 }

@@ -6,20 +6,6 @@
 
 void drawInWindow()
 {
-<<<<<<< HEAD
-	while (data->getWindow()->isOpen())
-	{
-		if (data->getRedraw())
-		{
-			data->getWindow()->draw(*data->getBackGround());
-			data->getWindow()->draw(*data->getPlayer(0)->getSprite());
-			data->getWindow()->draw(*data->getPlayer(1)->getSprite());
-			data->getWindow()->draw(*data->getPlayer(2)->getSprite());
-			data->getWindow()->draw(*data->getPlayer(3)->getSprite());
-			data->getWindow()->display();
-		}
-	}
-=======
 	if (data->getRedraw() == true)
 	{
 		data->getWindow()->draw(*data->getBackGround());
@@ -37,5 +23,4 @@ void drawInWindow()
 		data->getWindow()->display();
 	}
 	data->setRedraw(false);
->>>>>>> origin/master
 }

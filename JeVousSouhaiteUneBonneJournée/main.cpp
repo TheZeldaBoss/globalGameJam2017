@@ -123,7 +123,6 @@ int main()
 	data = new globalData();
 	Labyrinth laby("src/testLabyrinth/mapTest.txt");
 	Player	p1(0);
-<<<<<<< HEAD
 	Player	p2(1);
 	Player	p3(2);
 	Player	p4(3);
@@ -134,14 +133,11 @@ int main()
 	std::thread t4(&Player::start, &p4);
 
 	std::thread	t_display(drawInWindow);
-=======
 	data->setLabyrinth(&laby);
 	data->setRedraw(true);
 	std::thread o(&Player::start, &p1);
 	std::thread	t_display(&drawInWindow);
->>>>>>> origin/master
 
-	//p1.start();
 	data->getWindow()->setActive(false);
 
 	t_display.join();

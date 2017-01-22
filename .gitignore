@@ -1,0 +1,85 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+<<<<<<< HEAD
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.Build.CppClean.log
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.Build.CppClean.log
+*.log
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.Build.CppClean.log
+*.log
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.Build.CppClean.log
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.Build.CppClean.log
+*.log
+JeVousSouhaiteUneBonneJournée.sdf
+JeVousSouhaiteUneBonneJournée.v12.suo
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.log
+=======
+JeVousSouhaiteUneBonneJournée.sdf
+JeVousSouhaiteUneBonneJournée/JeVousSouhaiteUneBonneJournée.vcxproj.filters
+JeVousSouhaiteUneBonneJournée.v12.suo
+JeVousSouhaiteUneBonneJournée/JeVousSouhaiteUneBonneJournée.vcxproj
+JeVousSouhaiteUneBonneJournée.v12.suo
+JeVousSouhaiteUneBonneJournée.sdf
+*.suo
+*.sdf
+*.suo
+*.log
+>>>>>>> origin/master
+JeVousSouhaiteUneBonneJournée.sdf
+JeVousSouhaiteUneBonneJournée.sdf
+JeVousSouhaiteUneBonneJournée.v12.suo
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.log
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.log
+JeVousSouhaiteUneBonneJournée.sdf
+JeVousSouhaiteUneBonneJournée/Display.cpp
+JeVousSouhaiteUneBonneJournée.sdf
+*.sdf
+*.suo
+*.log
+JeVousSouhaiteUneBonneJournée.sdf
+*.suo
+JeVousSouhaiteUneBonneJournée/Debug/JeVousSouhaiteUneBonneJournée.log

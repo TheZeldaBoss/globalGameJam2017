@@ -40,6 +40,9 @@ public:
 	void			setSprite(sf::IntRect);
 	sf::Sprite		*getSprite() const;
 
+	//check modified scale
+	bool getEntitySet();
+	void setEntitySet(bool);
 	// Bonus
 
 private:
@@ -49,6 +52,7 @@ private:
 	int					_x;
 	int					_y;
 	int					_speed;
+	bool				_entitySet;
 	std::vector<IEntity>	_bonus;
 };
 

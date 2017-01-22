@@ -1,10 +1,12 @@
 #include "IEntity.h"
 #include "main.h"
+#include <windows.h>
 
 IEntity::IEntity()
 {
 	_texture = new sf::Texture;
 	_sprite = new sf::Sprite;
+	_entitySet = false;
 }
 
 IEntity::~IEntity()
@@ -33,6 +35,11 @@ void			IEntity::setSprite(sf::IntRect area)
 {
 	_sprite->setTexture(*getTexture(), true);
 	_sprite->setTextureRect(area);
+	if (this->getEntitySet() == false)
+	{
+		_sprite->scale(.25f, .25f);
+		this->_entitySet = true;
+	}
 }
 
 sf::Sprite*		IEntity::getSprite() const
@@ -45,23 +52,27 @@ void			IEntity::move(enum MOVE mv)
 {
 	if (mv == UP)
 	{
-		setY(getY() - getSpeed());
+		setY(getY() - (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
+		Sleep(20);
 	}
 	else if (mv == LEFT)
 	{
-		setX(getX() - getSpeed());
+		setX(getX() - (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
+		Sleep(20);
 	}
 	else if (mv == RIGHT)
 	{
-		setX(getX() + getSpeed());
+		setX(getX() + (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
+		Sleep(20);
 	}
 	else if (mv == DOWN)
 	{
-		setY(getY() + getSpeed());
+		setY(getY() + (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
+		Sleep(20);
 	}
 	data->setRedraw(true);
 }
@@ -100,4 +111,14 @@ void			IEntity::setSpeed(int speed)
 int				IEntity::getSpeed() const
 {
 	return (_speed);
+}
+
+void IEntity::setEntitySet(bool set)
+{
+	this->_entitySet = set;
+}
+
+bool IEntity::getEntitySet()
+{
+	return (_entitySet);
 }

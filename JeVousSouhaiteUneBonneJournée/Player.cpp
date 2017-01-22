@@ -103,7 +103,7 @@ void	Player::mvAnim()
 			setDir(MOVE::LEFT);
 		if (MAIN_MV == DOWN)
 			setDir(MOVE::DOWN);
-		printf("%d\n", speed);
+		//printf("%d\n", speed);
 		if (speed == ANIM_SPEED)
 		{
 			setSprite(sf::IntRect(i * 28, 0, 28, 35));
@@ -148,33 +148,29 @@ void	Player::start()
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = UP;
-			for (int i = 0; i < data->getPlayers()->size(); i++)
-			{
-				if (dataPlayers[i]->getId() != this->getId() && abs(dataPlayers[i]->getY() - this->getY()) < 0.5)
-				{
-					doMove = false;
-				}
-				if (doMove == true)
-					move(MOVE::UP);
-			}
+			if (data->getLabyrinth()->getData()[(this->getY() - 1) / 16][(this->getX()) / 16] == 0)
+			move(MOVE::UP);
 		}
 		if (sf::Keyboard::isKeyPressed(LEFT))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = LEFT;
-			move(MOVE::LEFT);
+			if (data->getLabyrinth()->getData()[(this->getY()) / 16][(this->getX() - 1) / 16] == 0)
+				move(MOVE::LEFT);
 		}
 		if (sf::Keyboard::isKeyPressed(RIGHT))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = RIGHT;
-			move(MOVE::RIGHT);
+			if (data->getLabyrinth()->getData()[(this->getY()) / 16][(this->getX()) / 16 + 1] == 0)
+				move(MOVE::RIGHT);
 		}
 		if (sf::Keyboard::isKeyPressed(DOWN))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = DOWN;
-			move(MOVE::DOWN);
+			if (data->getLabyrinth()->getData()[(this->getY()) / 16 + 1][(this->getX()) / 16] == 0)
+				move(MOVE::DOWN);
 		}
 	}
 }

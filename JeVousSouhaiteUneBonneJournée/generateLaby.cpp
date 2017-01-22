@@ -35,6 +35,11 @@ Labyrinth::Labyrinth(std::string filename)
 	}
 }
 
+Labyrinth::~Labyrinth()
+{
+
+}
+
 int Labyrinth::getOutX()
 {
 	return (this->outX);

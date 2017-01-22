@@ -25,7 +25,7 @@ public:
 
 	void	setBind();
 	void	mvAnim();
-
+	void	win();
 private:
 	int					i;
 	int					speed;

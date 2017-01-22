@@ -12,6 +12,7 @@ private:
 	std::vector<std::vector<int>>labyrinthData;
 public:
 	Labyrinth(std::string fileName);
+	Labyrinth::~Labyrinth();
 	int getOutX();
 	int getOutY();
 	std::vector<std::vector<int>>getData();

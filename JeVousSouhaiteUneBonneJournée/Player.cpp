@@ -5,6 +5,7 @@
 #include "main.h"
 
 #define	ANIM_SPEED 6
+#define CASE_SIZE 64
 
 // Constructor
 
@@ -35,7 +36,7 @@ void	Player::setBind()
 		LEFT = sf::Keyboard::Q;
 		RIGHT = sf::Keyboard::D;
 		DOWN = sf::Keyboard::S;
-		setXY(200, 200);
+		setXY(1 * CASE_SIZE, 1 * CASE_SIZE);
 		setImage("src/player/player1.png");
 	}
 	if (getId() == 1)
@@ -44,7 +45,7 @@ void	Player::setBind()
 		LEFT = sf::Keyboard::Left;
 		RIGHT = sf::Keyboard::Right;
 		DOWN = sf::Keyboard::Down;
-		setXY(400, 200);
+		setXY(9 * CASE_SIZE, 1 * CASE_SIZE);
 		setImage("src/player/player2.png");
 	}
 	if (getId() == 2)
@@ -53,7 +54,7 @@ void	Player::setBind()
 		LEFT = sf::Keyboard::K;
 		RIGHT = sf::Keyboard::M;
 		DOWN = sf::Keyboard::L;
-		setXY(200, 400);
+		setXY(1 * CASE_SIZE, 9 * CASE_SIZE);
 		setImage("src/player/player3.png");
 	}
 	if (getId() == 3)
@@ -62,7 +63,7 @@ void	Player::setBind()
 		LEFT = sf::Keyboard::V;
 		RIGHT = sf::Keyboard::N;
 		DOWN = sf::Keyboard::B;
-		setXY(400, 400);
+		setXY(9 * CASE_SIZE, 9 * CASE_SIZE);
 		setImage("src/player/player4.png");
 	}
 }
@@ -95,6 +96,7 @@ void	Player::mvAnim()
 {
 	if (MAIN_MV != sf::Keyboard::Key::Unknown)
 	{
+		data->getMusicStream(getId())->setVolume(100);
 		if (MAIN_MV == UP)
 			setDir(MOVE::UP);
 		if (MAIN_MV == RIGHT)
@@ -118,14 +120,14 @@ void	Player::mvAnim()
 		i = 0;
 		data->setRedraw(true);
 	}
-	if (MAIN_MV == UP && !(sf::Keyboard::isKeyPressed(UP)))
+	if (MAIN_MV == UP && !(sf::Keyboard::isKeyPressed(UP)) ||
+		MAIN_MV == LEFT && !(sf::Keyboard::isKeyPressed(LEFT)) ||
+		MAIN_MV == RIGHT && !(sf::Keyboard::isKeyPressed(RIGHT)) ||
+		MAIN_MV == DOWN && !(sf::Keyboard::isKeyPressed(DOWN)))
+	{
 		MAIN_MV = sf::Keyboard::Key::Unknown;
-	if (MAIN_MV == DOWN && !(sf::Keyboard::isKeyPressed(DOWN)))
-		MAIN_MV = sf::Keyboard::Key::Unknown;
-	if (MAIN_MV == LEFT && !(sf::Keyboard::isKeyPressed(LEFT)))
-		MAIN_MV = sf::Keyboard::Key::Unknown;
-	if (MAIN_MV == RIGHT && !(sf::Keyboard::isKeyPressed(RIGHT)))
-		MAIN_MV = sf::Keyboard::Key::Unknown;
+		data->getMusicStream(getId())->setVolume(0);
+	}
 }
 
 void	Player::start()
@@ -133,7 +135,7 @@ void	Player::start()
 	setSprite(sf::IntRect(0, 0, 28, 35));
 	getSprite()->setPosition((float)getX(), (float)getY());
 	MAIN_MV = sf::Keyboard::Key::Unknown;
-	while (42)
+	while (data->getExit() == false)
 	{
 		Sleep(1);
 		mvAnim();
@@ -144,29 +146,39 @@ void	Player::start()
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = UP;
-		//	if (data->getLabyrinth()->getData()[(this->getY() - 1) / 64][(this->getX()) / 64] == 0)
+			if (data->getLabyrinth()->getData()[(this->getY() - 1) / 64][(this->getX()) / 64] == 0)
 				move(MOVE::UP);
 		}
 		if (sf::Keyboard::isKeyPressed(LEFT))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = LEFT;
-		//	if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX() - 1) / 64] == 0)
+			if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX() - 1) / 64] == 0)
 				move(MOVE::LEFT);
 		}
 		if (sf::Keyboard::isKeyPressed(RIGHT))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = RIGHT;
-		//	if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX()) / 64 + 1] == 0)
+			if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX()) / 64 + 1] == 0)
 				move(MOVE::RIGHT);
 		}
 		if (sf::Keyboard::isKeyPressed(DOWN))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = DOWN;
-		//	if (data->getLabyrinth()->getData()[(this->getY()) / 64 + 1][(this->getX()) / 64] == 0)
+			if (data->getLabyrinth()->getData()[(this->getY()) / 64 + 1][(this->getX()) / 64] == 0)
 				move(MOVE::DOWN);
 		}
+		win();
+	}
+}
+
+void Player::win()
+{
+	if ((this->getX() / 64 < 1 || (this->getX() / 64 > data->getLabyrinth()->getData()[0].size() - 2)) || (this->getY() / 64 < 1 || this->getY() / 64 > (data->getLabyrinth()->getData().size() - 2)))
+	{
+		std::cout << "Player " << this->getId() << " won" << std::endl;
+		data->setExit(true);
 	}
 }

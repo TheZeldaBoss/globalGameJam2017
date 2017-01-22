@@ -21,10 +21,11 @@ private:
 	sf::Sprite *_floor;
 	std::vector<Player*>	*_players;
 	std::vector<std::vector<sf::Sprite>> spritesVector;
-	std::vector<sf::Music*>		music;
+	std::vector<sf::Music*>		_music;
 
 public:
 	globalData();
+	~globalData();
 	sf::Music	*getMusicStream(int);
 	bool getExit();
 	void setExit(bool);

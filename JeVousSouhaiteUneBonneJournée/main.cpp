@@ -7,6 +7,7 @@ globalData *data;
 
 globalData::globalData()
 {
+	sf::Music *a = new sf::Music;
 	exitProgram = false;
 	redraw = true;
 	_texture = new sf::Texture();
@@ -16,7 +17,14 @@ globalData::globalData()
 	_wall = new sf::Sprite();
 	_floor = new sf::Sprite();
 	_players = new std::vector<Player*>;
-//		m_p1 = new sf::Music();
+	sf::Music	*p1 = new sf::Music;
+	sf::Music	*p2 = new sf::Music;
+	sf::Music	*p3 = new sf::Music;
+	sf::Music	*p4 = new sf::Music;
+	_music.push_back(p1);
+	_music.push_back(p2);
+	_music.push_back(p3);
+	_music.push_back(p4);
 	_texture->loadFromFile("src/background.png");
 	_tileset->loadFromFile("src/tileset.png");
 	_backGround->setTexture(*_texture, true);
@@ -28,9 +36,20 @@ globalData::globalData()
 	_backGround->setScale((float)_window->getSize().x / _texture->getSize().x, (float)_window->getSize().y / _texture->getSize().y);
 }
 
+globalData::~globalData()
+{
+	delete _texture;
+	delete _tileset;
+	delete _window;
+	delete _backGround;
+	delete _wall;
+	delete _floor;
+	delete _players;
+}
+
 sf::Music					*globalData::getMusicStream(int i)
 {
-	return (music.at(i));
+	return (_music.at(i));
 }
 
 bool						 globalData::getExit()
@@ -112,8 +131,7 @@ void globalData::setLabyrinth(Labyrinth *lab)
 				actualLine->push_back(*this->_floor);
 			else
 				actualLine->push_back(*this->_wall);
-			(*actualLine)[j].setPosition(sf::Vector2f((float)(64.0 * j), (float)(64.0 * i) - 448.0));
-			//printf("%f %f\n", (float)(64.0 * j), (float)(64.0 * i) - 448.0);
+			(*actualLine)[j].setPosition(sf::Vector2f((float)(64.0 * j), (float)(64.0 * i)));
 		}
 		this->spritesVector.push_back(*actualLine);
 		actualLine->clear();
@@ -134,17 +152,14 @@ int main()
 	Player	p3(2);
 	Player	p4(3);
 
+	data->setLabyrinth(&laby);
 	std::thread t1(&Player::start, &p1);
 	std::thread t2(&Player::start, &p2);
 	std::thread t3(&Player::start, &p3);
 	std::thread t4(&Player::start, &p4);
 
-//	std::thread	t_display(&drawInWindow);
-//	data->setLabyrinth(&laby);
-//	data->setRedraw(true);
 	data->getWindow()->setActive(true);
 	drawInWindow();
-
-//	while (data->getExit() == false);
+	delete data;
 	return 0;
 }

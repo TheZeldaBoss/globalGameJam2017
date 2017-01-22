@@ -1,0 +1,16 @@
+Bonjour bonjour !
+
+-On a deux musiques au final, la musique 8bit et la musique electro.
+Pour les deux pistes on vous fourni les différentes parties : 
+
+-Axel : Pour la musique 8bit, il y a la version complète si vous voulez l'utiliser comme musique de menu. Sinon on a quand même découper en 4 parties suivant les 4 joueurs si vous voulez l'intégrer au gameplay.
+
+-Flora : J'ai fait pareil pour la piste électro (c'est à dire version complète si elle est utilisée en menu, ou version découpée si utilisée en gameplay).
+SAUF que de base, si vous l'utilisez pour le gameplay, il faut que la partie instrumentale joue par défaut (pour avoir la rythmique). De là, les pistes joueur 1 à 4 sont connectées aux personnages correspondant.
+
+-Sound design : 
+Reversecrash : bruitage qui se lance lorsqu'on lance une partie à partir du menu (pour faire la transition entre musique de menu et musique de gameplay
+Lampe : pour le bonus qui permet de voir plus loin
+Laser : bruitage lorsqu'on paralyse un adversaire
+
+-Si les fichiers sont trop lourd, dites-moi et je vous reconverti tout ça en mp3

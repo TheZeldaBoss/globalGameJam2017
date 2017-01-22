@@ -21,8 +21,8 @@ globalData::globalData()
 	_backGround->setTexture(*_texture, true);
 	_wall->setTexture(*_tileset, true);
 	_floor->setTexture(*_tileset, true);
-	_wall->setTextureRect(sf::IntRect(16, 0, 16, 16));
-	_floor->setTextureRect(sf::IntRect(0, 0, 16, 16));
+	_wall->setTextureRect(sf::IntRect(64, 0, 64, 64));
+	_floor->setTextureRect(sf::IntRect(0, 0, 64, 64));
 	_window->create(sf::VideoMode(1280, 720), "GLOBAL");
 	_backGround->setScale((float)_window->getSize().x / _texture->getSize().x, (float)_window->getSize().y / _texture->getSize().y);
 }
@@ -106,7 +106,8 @@ void globalData::setLabyrinth(Labyrinth *lab)
 				actualLine->push_back(*this->_floor);
 			else
 				actualLine->push_back(*this->_wall);
-			(*actualLine)[j].setPosition(sf::Vector2f((float)(16.0 * j), (float)(16.0 * i)));
+			(*actualLine)[j].setPosition(sf::Vector2f((float)(64.0 * j), (float)(64.0 * i) - 448.0));
+			printf("%f %f\n", (float)(64.0 * j), (float)(64.0 * i) - 448.0);
 		}
 		this->spritesVector.push_back(*actualLine);
 		actualLine->clear();
@@ -121,7 +122,7 @@ std::vector<std::vector<sf::Sprite>>globalData::getSpritesVector()
 int main()
 {
 	data = new globalData();
-	Labyrinth laby("src/testLabyrinth/mapTest.txt");
+	Labyrinth laby("src/testLabyrinth/mapTest2.txt");
 	Player	p1(0);
 	Player	p2(1);
 	Player	p3(2);
@@ -132,10 +133,12 @@ int main()
 	std::thread t3(&Player::start, &p3);
 	std::thread t4(&Player::start, &p4);
 
-	std::thread	t_display(&drawInWindow);
+//	std::thread	t_display(&drawInWindow);
 	data->setLabyrinth(&laby);
-	data->setRedraw(true);
-	data->getWindow()->setActive(false);
-	while (data->getExit() == false);
+//	data->setRedraw(true);
+	data->getWindow()->setActive(true);
+	drawInWindow();
+
+//	while (data->getExit() == false);
 	return 0;
 }

@@ -54,26 +54,23 @@ void			IEntity::move(enum MOVE mv)
 	{
 		setY(getY() - (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
-		Sleep(20);
 	}
 	else if (mv == LEFT)
 	{
 		setX(getX() - (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
-		Sleep(20);
 	}
 	else if (mv == RIGHT)
 	{
 		setX(getX() + (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
-		Sleep(20);
 	}
 	else if (mv == DOWN)
 	{
 		setY(getY() + (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
-		Sleep(20);
 	}
+	Sleep(20);
 	data->setRedraw(true);
 }
 

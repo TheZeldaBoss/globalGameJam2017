@@ -16,6 +16,7 @@ globalData::globalData()
 	_wall = new sf::Sprite();
 	_floor = new sf::Sprite();
 	_players = new std::vector<Player*>;
+//		m_p1 = new sf::Music();
 	_texture->loadFromFile("src/background.png");
 	_tileset->loadFromFile("src/tileset.png");
 	_backGround->setTexture(*_texture, true);
@@ -25,6 +26,11 @@ globalData::globalData()
 	_floor->setTextureRect(sf::IntRect(0, 0, 64, 64));
 	_window->create(sf::VideoMode(1280, 720), "GLOBAL");
 	_backGround->setScale((float)_window->getSize().x / _texture->getSize().x, (float)_window->getSize().y / _texture->getSize().y);
+}
+
+sf::Music					*globalData::getMusicStream(int i)
+{
+	return (music.at(i));
 }
 
 bool						 globalData::getExit()
@@ -107,7 +113,7 @@ void globalData::setLabyrinth(Labyrinth *lab)
 			else
 				actualLine->push_back(*this->_wall);
 			(*actualLine)[j].setPosition(sf::Vector2f((float)(64.0 * j), (float)(64.0 * i) - 448.0));
-			printf("%f %f\n", (float)(64.0 * j), (float)(64.0 * i) - 448.0);
+			//printf("%f %f\n", (float)(64.0 * j), (float)(64.0 * i) - 448.0);
 		}
 		this->spritesVector.push_back(*actualLine);
 		actualLine->clear();
@@ -134,7 +140,7 @@ int main()
 	std::thread t4(&Player::start, &p4);
 
 //	std::thread	t_display(&drawInWindow);
-	data->setLabyrinth(&laby);
+//	data->setLabyrinth(&laby);
 //	data->setRedraw(true);
 	data->getWindow()->setActive(true);
 	drawInWindow();

@@ -11,7 +11,7 @@
 Player::Player(int id)
 {
 	setId(id);
-	setSpeed(1);
+	setSpeed(3);
 	setBind();
 	setDir(MOVE::DOWN);
 	getSprite()->scale(2, 2);
@@ -144,28 +144,28 @@ void	Player::start()
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = UP;
-			if (data->getLabyrinth()->getData()[(this->getY() - 1) / 64][(this->getX()) / 64] == 0)
+		//	if (data->getLabyrinth()->getData()[(this->getY() - 1) / 64][(this->getX()) / 64] == 0)
 				move(MOVE::UP);
 		}
 		if (sf::Keyboard::isKeyPressed(LEFT))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = LEFT;
-			if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX() - 1) / 64] == 0)
+		//	if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX() - 1) / 64] == 0)
 				move(MOVE::LEFT);
 		}
 		if (sf::Keyboard::isKeyPressed(RIGHT))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = RIGHT;
-			if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX()) / 64 + 1] == 0)
+		//	if (data->getLabyrinth()->getData()[(this->getY()) / 64][(this->getX()) / 64 + 1] == 0)
 				move(MOVE::RIGHT);
 		}
 		if (sf::Keyboard::isKeyPressed(DOWN))
 		{
 			if (MAIN_MV == sf::Keyboard::Key::Unknown)
 				MAIN_MV = DOWN;
-			if (data->getLabyrinth()->getData()[(this->getY()) / 64 + 1][(this->getX()) / 64] == 0)
+		//	if (data->getLabyrinth()->getData()[(this->getY()) / 64 + 1][(this->getX()) / 64] == 0)
 				move(MOVE::DOWN);
 		}
 	}

@@ -4,6 +4,7 @@
 #include "Player.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "generateLaby.h"
 
 class globalData
@@ -20,9 +21,11 @@ private:
 	sf::Sprite *_floor;
 	std::vector<Player*>	*_players;
 	std::vector<std::vector<sf::Sprite>> spritesVector;
+	std::vector<sf::Music*>		music;
 
 public:
 	globalData();
+	sf::Music	*getMusicStream(int);
 	bool getExit();
 	void setExit(bool);
 	bool getRedraw();

@@ -35,11 +35,6 @@ void			IEntity::setSprite(sf::IntRect area)
 {
 	_sprite->setTexture(*getTexture(), true);
 	_sprite->setTextureRect(area);
-	if (this->getEntitySet() == false)
-	{
-		_sprite->scale(.25f, .25f);
-		this->_entitySet = true;
-	}
 }
 
 sf::Sprite*		IEntity::getSprite() const
@@ -70,7 +65,7 @@ void			IEntity::move(enum MOVE mv)
 		setY(getY() + (getSpeed()));
 		getSprite()->setPosition((float)getX(), (float)getY());
 	}
-	Sleep(20);
+	Sleep(5);
 	data->setRedraw(true);
 }
 
